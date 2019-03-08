@@ -11,7 +11,7 @@
 
 </head>
 <body>
-    <div class="container round bg-dark w-75 p-3" id="homeTemplate">
+    <div class="container round bg-dark w-85 p-3" id="homeTemplate">
         <main role="main">
             <div class="jumbotron">
                 <div class="container">
@@ -23,7 +23,7 @@
 
             <div class="navbar navbar-dark bg-info">
                 <h3 class="text-light">Get Started!</h3>
-                <div id="startOptions">
+                <div id="startOptions" class="btn-group" role="group">
                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#taskSubmitModal">Add Task</button>
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#taskHistoryModal">Task History</button>
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#taskDeleteAllModal">Delete All</button>
@@ -35,10 +35,10 @@
     </div>
 
     <template id="taskElem">
-        <div class="task navbar navbar-dark round bg-light text-dark m-3">
+        <div class="task navbar navbar-dark round bg-light text-dark w-100">
             <h3 id="taskTitle" class="w-100"></h3>
             <p id="taskBody" class="w-100"></p>
-            <div id="taskOptions">
+            <div id="taskOptions" class="btn-group" role="group">
                 <button type="button" class="btn btn-success taskCompleted">Done!</button>
                 <button type="button" class="btn btn-primary taskEdit" data-toggle="modal" data-target="#taskEditModal">Edit</button>
                 <button type="button" class="btn btn-danger taskDeleted">Delete</button>
