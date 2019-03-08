@@ -6,8 +6,6 @@ hbs = require('hbs'),
 bodyParser = require('body-parser'),
 uuid = require('uuid');
 port = process.env.PORT || 3000;
-
-console.log(process.env);
 // ------------------------------------------------------------- //
 
 const dateFormat = {
