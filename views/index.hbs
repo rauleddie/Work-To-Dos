@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Work To-Dos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="{{addLinkTag}}">
+
+</head>
+<body>
+    <div class="container round bg-dark w-50 p-3" id="homeTemplate">
+        <main role="main">
+            <div class="jumbotron">
+                <div class="container">
+                    <h1 class="display">Welcome to Work To-Dos</h1>
+                    <p>This is a single page application meant to serve as a reminder for your day to day tasks.</p>
+                </div>
+            </div>
+            
+
+            <div class="navbar navbar-dark bg-info">
+                <h3 class="text-light">Get Started!</h3>
+                <div id="startOptions">
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#taskSubmitModal">Add Task</button>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#taskHistoryModal">Task History</button>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#taskDeleteAllModal">Delete All</button>
+                </div>
+            </div>
+
+            <div class="container p-4" id="taskContainer"></div>
+        </main>
+    </div>
+
+    <template id="taskElem">
+        <div class="task navbar navbar-dark round bg-light text-dark m-3">
+            <h3 id="taskTitle" class="w-100"></h3>
+            <p id="taskBody" class="w-100"></p>
+            <div id="taskOptions">
+                <button type="button" class="btn btn-success taskCompleted">Done!</button>
+                <button type="button" class="btn btn-primary taskEdit" data-toggle="modal" data-target="#taskEditModal">Edit</button>
+                <button type="button" class="btn btn-danger taskDeleted">Delete</button>
+            </div>
+        </div>
+    </template>
+
+    {{!-- Add Task Modal --}}
+
+    <div class="modal fade" id="taskSubmitModal" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content round bg-warning text-secondary" id="addForm">
+                <div class="modal-header">
+                    <h1 class="display text-dark">Add a task</h1>
+                    <button type="button" class="close" id="cancelSubmitTask" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <label for="title">Title:</label>
+                    <input type="text" name="title" id="formAddTitle" class="form-control" maxlength="25">
+                    <label for="body">Body</label>
+                    <textarea name="body" id="formAddBody" class="form-control" cols="30" rows="5" style="resize:none"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="submitTask" class="btn-lg btn-block btn-primary" data-dismiss="modal">Add My Task!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Delete All Modal --}}
+
+    <div class="modal fade" id="taskDeleteAllModal" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-danger text-dark round">
+                <div class="modal-header">
+                    <h2 class="modal-title">Please Confirm Action!</h2>
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete all tasks? This action is irreversible.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="deleteAll" data-dismiss="modal">I'm Sure</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Task History Modal --}}
+
+    <div class="modal fade" id="taskHistoryModal" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content round bg-light text-dark">
+                <div class="modal-header">
+                    <h1 class="display text-dark">Task History</h1>
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table" id="historyTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Title</th>
+                                <th scope="col">Body</th>
+                                <th scope="col">Created</th>
+                                <th scope="col">Task State</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="clearHistory" data-dismiss="modal">Clear History</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Task Edit Modal --}}
+
+    <div class="modal fade" id="taskEditModal" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content round bg-info text-secondary" id="editForm">
+                <div class="modal-header">
+                    <h1 class="display text-dark">Edit task</h1>
+                    <button type="button" class="close" id="cancelEditTask" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <label for="title">Title:</label>
+                    <input type="text" name="title" id="formEditTitle" class="form-control" maxlength="25">
+                    <label for="body">Body</label>
+                    <textarea name="body" id="formEditBody" class="form-control" cols="30" rows="5" style="resize:none"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="editTask" class="btn-lg btn-block btn-dark" data-dismiss="modal">Save My Task!</button>
+                </div>sdf
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{addScriptTag}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>
